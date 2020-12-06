@@ -22,7 +22,6 @@ import {
   faSortAmountUp
 } from '@fortawesome/free-solid-svg-icons'
 
-
 export const bootstrapIconLibrary = () => {
   library.add(
     faFolder,

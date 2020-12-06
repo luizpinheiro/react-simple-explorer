@@ -1,3 +1,3 @@
-import SortLabel from "./SortLabel";
+import SortLabel from './SortLabel'
 
 export default SortLabel

@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlPlugin = require('html-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
+const ESLintWebpackPlugin = require('eslint-webpack-plugin')
 
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.js'),
@@ -17,12 +18,12 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'static/js/[name].chunk.js',
+    filename: 'static/js/[name].chunk.js'
   },
   optimization: {
     splitChunks: {
       chunks: 'all',
-      name: false,
+      name: false
     }
   },
   module: {
@@ -44,8 +45,8 @@ module.exports = {
             exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
             loader: require.resolve('file-loader'),
             options: {
-              name: 'static/media/[name].[hash:8].[ext]',
-            },
+              name: 'static/media/[name].[hash:8].[ext]'
+            }
           }
         ]
       }
@@ -57,5 +58,10 @@ module.exports = {
       template: 'sample/index.html'
     }),
     new CaseSensitivePathsPlugin(),
+    new ESLintWebpackPlugin({
+      context: path.resolve(__dirname, 'src'),
+      extensions: ['js', 'ts', 'jsx', 'tsx'],
+      fix: true
+    })
   ]
 }

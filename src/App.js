@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import 'normalize.css'
-import ReactFinder from '../build/react-simple-explorer'
+import ReactFinder from './lib/main'
 
 const entries = [
   {
@@ -63,11 +63,6 @@ const App = () => {
       alert(`The file ${entry.key} was selected!`)
     }
     console.log(`Entry ${entry.key} (${entry.type}) was clicked`)
-    setLoading(true)
-    setTimeout(() => setLoading(false), 500)
-  }
-
-  const handleParentEntryClick = () => {
     setLoading(true)
     setTimeout(() => setLoading(false), 500)
   }

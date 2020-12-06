@@ -1,8 +1,9 @@
 import React from 'react'
-import { Container, Piece, Link } from "./styled";
+import PropTypes from 'prop-types'
+import { Container, Piece, Link } from './styled'
 
 const Breadcrumb = ({ folder, handleItemClick }) => {
-  const pieces =  folder.substr(folder.startsWith('/') ? 1 : 0).split('/')
+  const pieces = folder.substr(folder.startsWith('/') ? 1 : 0).split('/')
   pieces.unshift('/')
 
   const handleClick = (index) => {
@@ -21,6 +22,11 @@ const Breadcrumb = ({ folder, handleItemClick }) => {
       ))}
     </Container>
   )
+}
+
+Breadcrumb.propTypes = {
+  folder: PropTypes.string.isRequired,
+  handleItemClick: PropTypes.func.isRequired
 }
 
 export default Breadcrumb

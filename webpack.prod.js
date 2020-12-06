@@ -1,7 +1,8 @@
 const path = require('path')
 const fs = require('fs')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const ESLintWebpackPlugin = require('eslint-webpack-plugin')
 const packageJson = JSON.parse(fs.readFileSync('package.json'))
 
 module.exports = {
@@ -15,10 +16,10 @@ module.exports = {
     library: 'reactSimpleExplorer',
     libraryTarget: 'umd',
     umdNamedDefine: true,
-    globalObject:  'this'
+    globalObject: 'this'
   },
   optimization: {
-    runtimeChunk: false,
+    runtimeChunk: false
   },
   externals: [
     ...Object.keys(packageJson.dependencies),
@@ -43,8 +44,8 @@ module.exports = {
             exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
             loader: require.resolve('file-loader'),
             options: {
-              name: 'static/media/[name].[hash:8].[ext]',
-            },
+              name: 'static/media/[name].[hash:8].[ext]'
+            }
           }
         ]
       }
@@ -53,5 +54,10 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new CaseSensitivePathsPlugin(),
+    new ESLintWebpackPlugin({
+      context: path.resolve(__dirname, 'src'),
+      extensions: ['js', 'ts', 'jsx', 'tsx'],
+      fix: false
+    })
   ]
 }

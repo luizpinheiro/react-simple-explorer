@@ -1,3 +1,3 @@
-import KeyIcon from "./KeyIcon";
+import KeyIcon from './KeyIcon'
 
 export default KeyIcon

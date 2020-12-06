@@ -1,22 +1,22 @@
 export default [
   {
-    label: "Name",
-    key: "name",
+    label: 'Name',
+    key: 'name'
   },
   {
-    label: "Size",
-    key: "size",
+    label: 'Size',
+    key: 'size'
   },
   {
-    label: "Author",
-    key: "author",
+    label: 'Author',
+    key: 'author'
   },
   {
-    label: "Created At",
-    key: "createdAt",
+    label: 'Created At',
+    key: 'createdAt'
   },
   {
-    label: "Modified At",
-    key: "modifiedAt",
+    label: 'Modified At',
+    key: 'modifiedAt'
   }
 ]

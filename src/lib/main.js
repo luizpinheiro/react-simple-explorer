@@ -1,23 +1,26 @@
-import React, {useCallback, useMemo, useState} from 'react'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import React, { useCallback, useMemo, useState } from 'react'
+import PropTypes from 'prop-types'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { parseISO, format } from 'date-fns'
-import {Table, THead, TBody, Tr, Th, Td, EntryLink, IconContainer} from "./styled";
-import {bootstrapIconLibrary} from "./helpers/icons";
-import KeyIcon from "./Components/KeyIcon/KeyIcon";
-import Breadcrumb from "./Components/Breadcrumb";
-import defaultTableDefinitions from "./tableDefinitions";
-import { formatBytes} from "./helpers/miscellaneous";
-import SortLabel from "./Components/SortLabel";
+import { Table, THead, TBody, Tr, Th, Td, EntryLink, IconContainer } from './styled'
+import { bootstrapIconLibrary } from './helpers/icons'
+import KeyIcon from './Components/KeyIcon/KeyIcon'
+import Breadcrumb from './Components/Breadcrumb'
+import defaultTableDefinitions from './tableDefinitions'
+import { formatBytes } from './helpers/miscellaneous'
+import SortLabel from './Components/SortLabel'
 
 bootstrapIconLibrary()
 
 const sortFunction = (sortKey, sortDirection) => (entryA, entryB) => {
   const leftHand = sortDirection === 'asc' ? entryA[sortKey] : entryB[sortKey]
   const rightHand = sortDirection === 'asc' ? entryB[sortKey] : entryA[sortKey]
-  if (entryA.type === entryB.type || sortKey === 'createdAt' || sortKey === 'modifiedAt')
+  if (entryA.type === entryB.type || sortKey === 'createdAt' || sortKey === 'modifiedAt') {
     return leftHand < rightHand ? -1 : 1
-  if (entryA.type === 'folder')
+  }
+  if (entryA.type === 'folder') {
     return -1
+  }
   return 1
 }
 
@@ -26,7 +29,29 @@ const getParentFolder = (currentFolder) => {
   return pieces.slice(0, pieces.length - 1).join('/')
 }
 
-const ReactFinder = ({loading, entries, onEntryClick, onFileClick, onFolderClick, showUpNavigationEntry, loadingLabel, navigateUpLabel, showBreadcrumb, currentFolder, handleBreadcrumbClick, enableEntryClick, enableFileClick, enableFolderClick, handleNavigationUp, customTableDefinitions, dateTimeFormat}) => {
+const ReactSimpleExporer = ({
+  loading = false,
+  entries = [],
+  onEntryClick = () => {
+  },
+  onFileClick = () => {
+  },
+  onFolderClick = () => {
+  },
+  showUpNavigationEntry = false,
+  loadingLabel = 'Loading...',
+  navigateUpLabel = 'Navigate up...',
+  showBreadcrumb = false,
+  currentFolder = '/',
+  handleBreadcrumbClick = () => {
+  },
+  enableEntryClick = true,
+  enableFileClick = true,
+  enableFolderClick = true,
+  handleNavigationUp = true,
+  customTableDefinitions = [],
+  dateTimeFormat = 'yyyy-MM-dd HH:m'
+}) => {
   const [sortKey, setSortKey] = useState('name')
   const [sortDirection, setSortDirection] = useState('asc')
 
@@ -34,10 +59,11 @@ const ReactFinder = ({loading, entries, onEntryClick, onFileClick, onFolderClick
   const sortedEntries = entries.sort(sortFn)
 
   const handleEntryClick = (entry) => {
-    if (entry.type === 'file')
+    if (entry.type === 'file') {
       onFileClick(entry.key)
-    else
+    } else {
       onFolderClick(entry.key)
+    }
     onEntryClick(entry)
   }
 
@@ -47,8 +73,9 @@ const ReactFinder = ({loading, entries, onEntryClick, onFileClick, onFolderClick
   }, [onFolderClick, handleBreadcrumbClick])
 
   const checkEntryDisabled = useCallback((entry) => {
-    if (entry.type === 'folder')
+    if (entry.type === 'folder') {
       return !(enableEntryClick && enableFolderClick)
+    }
     return !(enableEntryClick && enableFileClick)
   }, [enableEntryClick, enableFileClick, enableFolderClick])
 
@@ -62,10 +89,12 @@ const ReactFinder = ({loading, entries, onEntryClick, onFileClick, onFolderClick
   }, [customTableDefinitions])
 
   const handleSortChange = (k, d) => {
-    if(k !== sortKey)
+    if (k !== sortKey) {
       setSortKey(k)
-    if(d !== sortDirection)
+    }
+    if (d !== sortDirection) {
       setSortDirection(d)
+    }
   }
 
   return (
@@ -76,7 +105,8 @@ const ReactFinder = ({loading, entries, onEntryClick, onFileClick, onFolderClick
           <Tr>
             {tableDefinitions.map((columnDefinition) => (
               <Th key={columnDefinition.key}>
-                <SortLabel sortKey={columnDefinition.key} currentSortKey={sortKey} currentSortDirection={sortDirection} onSortChange={handleSortChange}>
+                <SortLabel sortKey={columnDefinition.key} currentSortKey={sortKey} currentSortDirection={sortDirection}
+                           onSortChange={handleSortChange}>
                   {columnDefinition.label}
                 </SortLabel>
               </Th>
@@ -108,7 +138,7 @@ const ReactFinder = ({loading, entries, onEntryClick, onFileClick, onFolderClick
           ) : sortedEntries.map(entry => (
             <Tr key={entry.name}>
               {tableDefinitions.map(columnDefinition => {
-                if(columnDefinition.key === 'name')
+                if (columnDefinition.key === 'name') {
                   return (
                     <Td key={columnDefinition.key}>
                       <EntryLink onClick={() => handleEntryClick(entry)} disabled={checkEntryDisabled(entry)}>
@@ -119,16 +149,20 @@ const ReactFinder = ({loading, entries, onEntryClick, onFileClick, onFolderClick
                       </EntryLink>
                     </Td>
                   )
+                }
 
-                if(columnDefinition.key === 'createdAt' || columnDefinition.key === 'modifiedAt')
+                if (columnDefinition.key === 'createdAt' || columnDefinition.key === 'modifiedAt') {
                   return (
                     <Td key={columnDefinition.key}>
                       {entry[columnDefinition.key] && format(parseISO(entry[columnDefinition.key]), dateTimeFormat)}
                     </Td>
                   )
+                }
 
-                if(columnDefinition.key === 'size')
-                  return <Td key={columnDefinition.key}>{entry.type !== 'folder' && formatBytes(entry[columnDefinition.key])}</Td>
+                if (columnDefinition.key === 'size') {
+                  return <Td
+                    key={columnDefinition.key}>{entry.type !== 'folder' && formatBytes(entry[columnDefinition.key])}</Td>
+                }
 
                 return <Td key={columnDefinition.key}>{entry[columnDefinition.key]}</Td>
               })}
@@ -140,27 +174,34 @@ const ReactFinder = ({loading, entries, onEntryClick, onFileClick, onFolderClick
   )
 }
 
-ReactFinder.defaultProps = {
-  showUpNavigationEntry: false,
-  navigateUpLabel: 'navigate to the previous folder',
-  loadingLabel: 'Loading...',
-  currentFolder: '',
-  showBreadcrumb: false,
-  handleNavigationUp: () => {
-  },
-  handleBreadcrumbClick: () => {
-  },
-  handleFileClick: () => {
-  },
-  handleFolderClick: () => {
-  },
-  handleEntryClick: () => {
-  },
-  enableEntryClick: true,
-  enableFolderClick: true,
-  enableFileClick: true,
-  customTableDefinitions: [],
-  dateTimeFormat: 'yyyy-MM-dd HH:m'
+ReactSimpleExporer.propTypes = {
+  loading: PropTypes.boolean,
+  entries: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(['file', 'folder']).isRequired,
+    size: PropTypes.number,
+    author: PropTypes.string,
+    createdAt: PropTypes.string,
+    modifiedAt: PropTypes.string
+  })).isRequired,
+  onEntryClick: PropTypes.func,
+  onFileClick: PropTypes.func,
+  onFolderClick: PropTypes.func,
+  showUpNavigationEntry: PropTypes.boolean,
+  loadingLabel: PropTypes.string,
+  navigateUpLabel: PropTypes.string,
+  showBreadcrumb: PropTypes.boolean,
+  currentFolder: PropTypes.string,
+  handleBreadcrumbClick: PropTypes.func,
+  enableEntryClick: PropTypes.boolean,
+  enableFileClick: PropTypes.boolean,
+  enableFolderClick: PropTypes.boolean,
+  handleNavigationUp: PropTypes.boolean,
+  customTableDefinitions: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string,
+    key: PropTypes.string
+  })),
+  dateTimeFormat: PropTypes.string
 }
 
-export default ReactFinder
+export default ReactSimpleExporer

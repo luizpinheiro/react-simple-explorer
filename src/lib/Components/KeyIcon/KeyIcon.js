@@ -1,17 +1,15 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-
 const findIconName = (key, type) => {
-  if(type === 'folder')
-    return 'folder'
+  if (type === 'folder') { return 'folder' }
 
-  if(type === 'parent-folder')
-    return 'arrow-alt-circle-left'
+  if (type === 'parent-folder') { return 'arrow-alt-circle-left' }
 
   let extension = null
   const extMatcher = key.match(/\.([a-z0-9]+)$/i)
-  if(extMatcher) {
+  if (extMatcher) {
     extension = extMatcher[1]
   }
 
@@ -52,7 +50,8 @@ const findIconName = (key, type) => {
       return 'file-alt'
   }
 }
-const KeyIcon = ({ fileName, type, color, size, inverse,rotation }) => {
+
+const KeyIcon = ({ fileName, type, color, size, inverse, rotation }) => {
   const iconName = findIconName(fileName, type)
   return <FontAwesomeIcon
     icon={['far', iconName]}
@@ -63,11 +62,20 @@ const KeyIcon = ({ fileName, type, color, size, inverse,rotation }) => {
   />
 }
 
+KeyIcon.propTypes = {
+  fileName: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  color: PropTypes.string,
+  size: PropTypes.string,
+  inverse: PropTypes.boolean,
+  rotation: PropTypes.number
+}
+
 KeyIcon.defaultProps = {
   color: '#000000',
   size: '1x',
   inverse: false,
-  rotation: 0,
+  rotation: 0
 }
 
 export default KeyIcon

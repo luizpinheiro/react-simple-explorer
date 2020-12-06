@@ -8,7 +8,7 @@ export const Table = styled.table`
 
 export const THead = styled.thead``
 
-export const TBody = styled. tbody``
+export const TBody = styled.tbody``
 
 export const Tr = styled.tr`
 
@@ -18,6 +18,7 @@ export const Tr = styled.tr`
 `
 
 export const Td = styled.td`
+  text-align: left;
   padding: 5px 10px;
 `
 
