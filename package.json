@@ -1,0 +1,59 @@
+{
+  "name": "react-simple-explorer",
+  "version": "1.0.0",
+  "description": "A simple, controlled and unopinionated react file explorer package",
+  "main": "build/react-simple-explorer.js",
+  "module": "build/react-simple-explorer.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-react": "^7.12.7",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-styled-components": "^1.12.0",
+    "case-sensitive-paths-webpack-plugin": "^2.3.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.3.2",
+    "css-loader": "^5.0.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^4.5.0",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-loader": "^4.1.0",
+    "postcss-preset-env": "^6.7.0",
+    "resolve": "^1.19.0",
+    "sass": "^1.30.0",
+    "sass-loader": "^10.1.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.10.0",
+    "webpack-cleanup-plugin": "^0.5.1",
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "peerDependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "scripts": {
+    "start": "webpack serve --config ./webpack.dev.js --color",
+    "build": "webpack --config ./webpack.prod.js"
+  },
+  "resolutions": {
+    "styled-components": "^5"
+  },
+  "babel": {
+    "plugins": [
+      "babel-plugin-styled-components"
+    ]
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-regular-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.13",
+    "date-fns": "^2.16.1",
+    "normalize.css": "^8.0.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1"
+  }
+}
