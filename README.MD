@@ -51,7 +51,7 @@ enableEntryClick | `boolean` | Defines if the entries, both files and folders, o
 enableFileClick | `boolean` | Defines if the file entries on the panel should be clickable. Default: `true`
 enableFolderClick | `boolean` | Defines if the folder entries on the panel should be clickable. Default: `true`
 customTableDefinitions | `array` | An array with objects containing two fields, `label` and `key`, that should be used to structure the columns for the file explorer table based on the data from the `entries` prop.
-dateTimeFormat | `string` | The datetime format based on the [Unicode Tokens](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table) that should be used to display the data from the `createdAt` and `modifiedAt` fields when they are present withing the data from the `entries` prop. Default: `yyyy-MM-dd HH:m`
+dateTimeFormat | `string` | The datetime format based on the [Unicode Tokens](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table) that should be used to display the data from the `createdAt` and `modifiedAt` fields when they are present within the data from the `entries` prop. Default: `yyyy-MM-dd HH:m`
 
 
 
