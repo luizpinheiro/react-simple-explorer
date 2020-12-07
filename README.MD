@@ -89,7 +89,7 @@ dateTimeFormat | `string` | The datetime format based on the [Unicode Tokens](ht
 
 ### Default Table Definitions
 
-```json
+```javascript
   [
     {
       label: 'Name',
