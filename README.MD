@@ -34,7 +34,7 @@ const App = () => (
 )
 ```
 
-# Example: Fetching from S3
+## Example: Fetching from S3
 
 Let's assume you have a helper function `fetchEntriesFromS3()` that fetches files and folders from a AWS S3 bucket.
 
