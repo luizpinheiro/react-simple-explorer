@@ -1,11 +1,20 @@
 {
   "name": "react-simple-explorer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple, controlled and unopinionated react file explorer package",
   "repository": {
     "url": "https://github.com/luizpinheiro/react-simple-explorer"
   },
-  "keywords": ["explorer", "react", "files", "folders", "file-explorer", "navigation", "tree", "directory"],
+  "keywords": [
+    "explorer",
+    "react",
+    "files",
+    "folders",
+    "file-explorer",
+    "navigation",
+    "tree",
+    "directory"
+  ],
   "main": "build/react-simple-explorer.js",
   "module": "build/react-simple-explorer.js",
   "license": "MIT",
