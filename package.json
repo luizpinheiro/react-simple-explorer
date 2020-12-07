@@ -1,6 +1,6 @@
 {
   "name": "react-simple-explorer",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A simple, controlled and unopinionated react file explorer package",
   "repository": {
     "url": "https://github.com/luizpinheiro/react-simple-explorer"
