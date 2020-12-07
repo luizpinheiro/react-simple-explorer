@@ -5,6 +5,7 @@
   "repository": {
     "url": "https://github.com/luizpinheiro/react-simple-explorer"
   },
+  "keywords": ["explorer", "react", "files", "folders", "file-explorer", "navigation", "tree", "directory"],
   "main": "build/react-simple-explorer.js",
   "module": "build/react-simple-explorer.js",
   "license": "MIT",
