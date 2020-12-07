@@ -27,9 +27,43 @@ const folderEntries = [
   },
 ]
 
-<ReactSimpleExporer
-  entries={folderEntries}
-/>
+const App = () => (
+  <ReactSimpleExporer
+    entries={folderEntries}
+  />
+)
+```
+
+# Example: Fetching from S3
+
+Let's assume you have a helper function `fetchEntriesFromS3()` that fetches files and folders from a AWS S3 bucket.
+
+```javascript
+import React, { useState, useEffect } from 'react'
+import ReactSimpleExplorer from 'react-simple-explorer'
+
+const App = () => {
+  const [currentFolder, setCurrentFolder] = useState('/')
+  const [loading, setLoading] = useState(true)
+  const [entries, setEntries] = useState([])
+
+  useEffect(async () => {
+      setEntries(await fetchEntriesFromS3())
+      setLoading(false)
+  }, [])
+
+  const handleFileClick = () => { ... }
+  const handleFolderClick = () => { ... }
+
+  return (
+    <ReactSimpleExporer
+      loading={loading}
+      entries={folderEntries}
+      onFileClick={handleFileClick}
+      onFolderClick={handleFolderClick}
+    />
+  )
+}
 ```
 
 # Props available
