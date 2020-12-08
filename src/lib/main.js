@@ -56,16 +56,16 @@ const ReactSimpleExporer = ({
   const [sortDirection, setSortDirection] = useState('asc')
 
   const sortFn = useMemo(() => sortFunction(sortKey, sortDirection), [sortKey, sortDirection])
-  const sortedEntries = entries.sort(sortFn)
+  const sortedEntries = useMemo(() => entries.sort(sortFn), [sortFn])
 
-  const handleEntryClick = (entry) => {
+  const handleEntryClick = useCallback((entry) => {
     if (entry.type === 'file') {
       onFileClick(entry.key)
     } else {
       onFolderClick(entry.key)
     }
     onEntryClick(entry)
-  }
+  }, [onFileClick, onFolderClick, onEntryClick])
 
   const handleBreadcrumb = useCallback((folder) => {
     onFolderClick(folder)
@@ -88,14 +88,14 @@ const ReactSimpleExporer = ({
     return customTableDefinitions.length ? customTableDefinitions : defaultTableDefinitions
   }, [customTableDefinitions])
 
-  const handleSortChange = (k, d) => {
+  const handleSortChange = useCallback((k, d) => {
     if (k !== sortKey) {
       setSortKey(k)
     }
     if (d !== sortDirection) {
       setSortDirection(d)
     }
-  }
+  }, [sortKey, sortDirection])
 
   return (
     <>
