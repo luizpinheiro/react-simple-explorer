@@ -86,6 +86,8 @@ enableFileClick | `boolean` | Defines if the file entries on the panel should be
 enableFolderClick | `boolean` | Defines if the folder entries on the panel should be clickable. | `true`
 customTableDefinitions | `array` | An array with objects containing two fields, `label` and `key`, that should be used to structure the columns for the file explorer table based on the data from the `entries` prop. | See below
 dateTimeFormat | `string` | The datetime format based on the [Unicode Tokens](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table) that should be used to display the data from the `createdAt` and `modifiedAt` fields when they are present within the data from the `entries` prop. | `yyyy-MM-dd HH:m`
+showSearchBar | `boolean` | Defines if a search bar will be shown | `true`
+searchPlaceholder | `string` | Sets the placeholder for the search bar input | "Type something to search..."
 
 ### Default Table Definitions
 

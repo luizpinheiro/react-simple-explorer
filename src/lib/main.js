@@ -9,6 +9,7 @@ import Breadcrumb from './Components/Breadcrumb'
 import defaultTableDefinitions from './tableDefinitions'
 import { formatBytes } from './helpers/miscellaneous'
 import SortLabel from './Components/SortLabel'
+import SearchBar from './Components/SearchBar'
 
 bootstrapIconLibrary()
 
@@ -50,13 +51,23 @@ const ReactSimpleExporer = ({
   enableFolderClick = true,
   handleNavigationUp = true,
   customTableDefinitions = [],
-  dateTimeFormat = 'yyyy-MM-dd HH:m'
+  dateTimeFormat = 'yyyy-MM-dd HH:m',
+  showSearchBar = true,
+  searchPlaceholder = 'Type something to search...'
 }) => {
   const [sortKey, setSortKey] = useState('name')
   const [sortDirection, setSortDirection] = useState('asc')
+  const [searchTerm, setSearchTerm] = useState('')
 
   const sortFn = useMemo(() => sortFunction(sortKey, sortDirection), [sortKey, sortDirection])
-  const sortedEntries = useMemo(() => entries.sort(sortFn), [sortFn])
+  const sortedEntries = useMemo(() => {
+    let e = entries.sort(sortFn)
+    if (searchTerm) {
+      const regex = new RegExp(searchTerm, 'i')
+      e = e.filter(entry => entry.name.match(regex) || entry.author.match(regex))
+    }
+    return e
+  }, [sortFn, searchTerm])
 
   const handleEntryClick = useCallback((entry) => {
     if (entry.type === 'file') {
@@ -97,9 +108,14 @@ const ReactSimpleExporer = ({
     }
   }, [sortKey, sortDirection])
 
+  const handleSearchChange = useCallback((s) => {
+    setSearchTerm(s)
+  }, [])
+
   return (
     <>
       {showBreadcrumb && <Breadcrumb folder={currentFolder} handleItemClick={handleBreadcrumb}/>}
+      {showSearchBar && <SearchBar searchPlaceholder={searchPlaceholder} onSearchChange={handleSearchChange} />}
       <Table>
         <THead>
           <Tr>
@@ -201,7 +217,9 @@ ReactSimpleExporer.propTypes = {
     label: PropTypes.string,
     key: PropTypes.string
   })),
-  dateTimeFormat: PropTypes.string
+  dateTimeFormat: PropTypes.string,
+  showSearchBar: PropTypes.bool,
+  searchPlaceholder: PropTypes.string
 }
 
 export default ReactSimpleExporer

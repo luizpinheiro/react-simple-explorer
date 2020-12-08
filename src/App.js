@@ -13,9 +13,9 @@ const App = () => {
 
   const handleEntryClick = (entry) => {
     if (entry.type === 'file') {
-      alert(`The file ${entry.key} was selected!`)
+      alert(`The file ${entry.name} was selected!`)
     }
-    console.log(`Entry ${entry.key} (${entry.type}) was clicked`)
+    console.log(`Entry ${entry.name} (${entry.type}) was clicked`)
     setLoading(true)
     setTimeout(() => setLoading(false), 500)
   }
