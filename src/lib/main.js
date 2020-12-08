@@ -175,7 +175,7 @@ const ReactSimpleExporer = ({
 }
 
 ReactSimpleExporer.propTypes = {
-  loading: PropTypes.boolean,
+  loading: PropTypes.bool,
   entries: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     type: PropTypes.oneOf(['file', 'folder']).isRequired,
@@ -187,16 +187,16 @@ ReactSimpleExporer.propTypes = {
   onEntryClick: PropTypes.func,
   onFileClick: PropTypes.func,
   onFolderClick: PropTypes.func,
-  showUpNavigationEntry: PropTypes.boolean,
+  showUpNavigationEntry: PropTypes.bool,
   loadingLabel: PropTypes.string,
   navigateUpLabel: PropTypes.string,
-  showBreadcrumb: PropTypes.boolean,
+  showBreadcrumb: PropTypes.bool,
   currentFolder: PropTypes.string,
   handleBreadcrumbClick: PropTypes.func,
-  enableEntryClick: PropTypes.boolean,
-  enableFileClick: PropTypes.boolean,
-  enableFolderClick: PropTypes.boolean,
-  handleNavigationUp: PropTypes.boolean,
+  enableEntryClick: PropTypes.bool,
+  enableFileClick: PropTypes.bool,
+  enableFolderClick: PropTypes.bool,
+  handleNavigationUp: PropTypes.func,
   customTableDefinitions: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string,
     key: PropTypes.string

@@ -2,54 +2,7 @@ import React, { useState, useEffect } from 'react'
 import 'normalize.css'
 import ReactFinder from './lib/main'
 
-const entries = [
-  {
-    name: 'some-image.png',
-    type: 'file',
-    size: 3000,
-    author: '',
-    createdAt: '2020-12-01T05:45:00-03:00',
-    modifiedAt: '2020-12-01T05:45:00Z'
-  },
-  {
-    name: 'teste.js',
-    type: 'file',
-    author: 'Brad',
-    size: 3000,
-    createdAt: '2019-12-01T07:41:00-00:00',
-    modifiedAt: '2019-12-01T07:45:00-00:00'
-  },
-  {
-    name: 'assets',
-    type: 'folder',
-    author: '',
-    createdAt: '2020-12-01T05:45:00-00:00',
-    modifiedAt: '2020-12-01T05:45:00-00:00'
-  },
-  {
-    name: 'images',
-    type: 'folder',
-    author: '',
-    createdAt: '2020-06-01T01:43:00-00:00',
-    modifiedAt: '2020-12-01T05:45:00-00:00'
-  },
-  {
-    name: 'relatorio-resultados-novembro-2020.pdf',
-    type: 'file',
-    size: 1024,
-    author: '',
-    createdAt: '2020-12-01T05:45:00-00:00',
-    modifiedAt: '2020-12-01T05:45:00-00:00'
-  },
-  {
-    name: 'modelo-assinatura.docx',
-    type: 'file',
-    author: 'John',
-    size: 300,
-    createdAt: '2020-12-01T05:45:00-00:00',
-    modifiedAt: '2020-12-01T05:45:00-00:00'
-  }
-]
+import entries from './data.json'
 
 const App = () => {
   const [loading, setLoading] = useState(true)

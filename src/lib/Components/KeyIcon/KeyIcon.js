@@ -67,7 +67,7 @@ KeyIcon.propTypes = {
   type: PropTypes.string.isRequired,
   color: PropTypes.string,
   size: PropTypes.string,
-  inverse: PropTypes.boolean,
+  inverse: PropTypes.bool,
   rotation: PropTypes.number
 }
 
