@@ -48,12 +48,15 @@ const App = () => {
   const [entries, setEntries] = useState([])
 
   useEffect(async () => {
-      setEntries(await fetchEntriesFromS3())
+      setEntries(await fetchEntriesFromS3(currentFolder))
       setLoading(false)
-  }, [])
+  }, [currentFolder])
 
   const handleFileClick = () => { ... }
-  const handleFolderClick = () => { ... }
+
+  const handleFolderClick = (folder) => {
+    setCurrentFolder(folder)
+  }
 
   return (
     <ReactSimpleExporer

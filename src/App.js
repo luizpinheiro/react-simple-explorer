@@ -42,6 +42,7 @@ const App = () => {
     showBreadcrumb
     currentFolder='teste/paginas'
     navigateUpLabel='..'
+    showSearchBar
   />)
 }
 
